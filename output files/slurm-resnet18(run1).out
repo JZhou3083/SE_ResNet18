@@ -1,0 +1,959 @@
+Running SLURM prolog script on indigo54.cluster.local
+===============================================================================
+Job started on Thu Sep  9 22:35:27 BST 2021
+Job ID          : 466443
+Job name        : run_on_iridis.sh
+WorkDir         : /mainfs/scratch/jz1n20/SE_Resnet18
+Command         : /mainfs/scratch/jz1n20/SE_Resnet18/run_on_iridis.sh
+Partition       : gpu
+Num hosts       : 1
+Num cores       : 10
+Num of tasks    : 10
+Hosts allocated : indigo54
+Job Output Follows ...
+===============================================================================
+# conda environments:
+#
+DeepL                 *  /home/jz1n20/.conda/envs/DeepL
+env1                     /home/jz1n20/.conda/envs/env1
+base                     /local/software/conda/miniconda-py3-new
+serviceline              /local/software/conda/miniconda-py3-new/envs/serviceline
+
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+==> Building model..
+==> Model structure: 
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer4): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): Linear(in_features=512, out_features=10, bias=True)
+)
+
+Epoch: 0
+tr_accuracy : 30.312, tr_loss : 828.5817792415619
+/home/jz1n20/.conda/envs/DeepL/lib/python3.8/site-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /opt/conda/conda-bld/pytorch_1623448234945/work/c10/core/TensorImpl.h:1156.)
+  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
+Saving..
+test_accuracy : 36.92, test_loss : 131.55344557762146, best_accuracy: 36.92
+
+Epoch: 1
+tr_accuracy : 45.072, tr_loss : 587.3496992588043
+Saving..
+test_accuracy : 49.94, test_loss : 107.09443032741547, best_accuracy: 49.94
+
+Epoch: 2
+tr_accuracy : 53.564, tr_loss : 504.839246571064
+Saving..
+test_accuracy : 56.22, test_loss : 96.80114781856537, best_accuracy: 56.22
+
+Epoch: 3
+tr_accuracy : 59.008, tr_loss : 451.86260628700256
+test_accuracy : 56.06, test_loss : 100.76538503170013, best_accuracy: 56.22
+
+Epoch: 4
+tr_accuracy : 62.484, tr_loss : 415.98429584503174
+Saving..
+test_accuracy : 64.89, test_loss : 80.81249910593033, best_accuracy: 64.89
+
+Epoch: 5
+tr_accuracy : 65.336, tr_loss : 386.83386957645416
+Saving..
+test_accuracy : 66.12, test_loss : 76.47033953666687, best_accuracy: 66.12
+
+Epoch: 6
+tr_accuracy : 67.1, tr_loss : 370.27727895975113
+Saving..
+test_accuracy : 67.12, test_loss : 74.21261996030807, best_accuracy: 67.12
+
+Epoch: 7
+tr_accuracy : 68.378, tr_loss : 354.1445351243019
+Saving..
+test_accuracy : 70.48, test_loss : 67.34101539850235, best_accuracy: 70.48
+
+Epoch: 8
+tr_accuracy : 69.844, tr_loss : 340.750197827816
+test_accuracy : 69.67, test_loss : 70.81092882156372, best_accuracy: 70.48
+
+Epoch: 9
+tr_accuracy : 70.272, tr_loss : 333.5718006491661
+test_accuracy : 69.87, test_loss : 68.46598213911057, best_accuracy: 70.48
+
+Epoch: 10
+tr_accuracy : 71.264, tr_loss : 325.1469764113426
+Saving..
+test_accuracy : 71.05, test_loss : 64.833400785923, best_accuracy: 71.05
+
+Epoch: 11
+tr_accuracy : 71.812, tr_loss : 318.02574706077576
+Saving..
+test_accuracy : 71.34, test_loss : 67.56889599561691, best_accuracy: 71.34
+
+Epoch: 12
+tr_accuracy : 72.35, tr_loss : 314.08153104782104
+Saving..
+test_accuracy : 73.49, test_loss : 61.27819466590881, best_accuracy: 73.49
+
+Epoch: 13
+tr_accuracy : 72.78, tr_loss : 310.3056141138077
+test_accuracy : 71.71, test_loss : 65.00835847854614, best_accuracy: 73.49
+
+Epoch: 14
+tr_accuracy : 73.272, tr_loss : 303.1609942317009
+test_accuracy : 72.81, test_loss : 64.46046569943428, best_accuracy: 73.49
+
+Epoch: 15
+tr_accuracy : 73.75, tr_loss : 299.0414353609085
+test_accuracy : 72.52, test_loss : 64.56165158748627, best_accuracy: 73.49
+
+Epoch: 16
+tr_accuracy : 74.096, tr_loss : 297.2833663225174
+test_accuracy : 72.87, test_loss : 61.8497519493103, best_accuracy: 73.49
+
+Epoch: 17
+tr_accuracy : 74.402, tr_loss : 292.7393537759781
+test_accuracy : 70.11, test_loss : 69.70003658533096, best_accuracy: 73.49
+
+Epoch: 18
+tr_accuracy : 74.62, tr_loss : 288.8782020509243
+test_accuracy : 71.43, test_loss : 67.8599950671196, best_accuracy: 73.49
+
+Epoch: 19
+tr_accuracy : 74.672, tr_loss : 289.03452911973
+test_accuracy : 71.5, test_loss : 65.12330186367035, best_accuracy: 73.49
+
+Epoch: 20
+tr_accuracy : 74.91, tr_loss : 288.20163583755493
+test_accuracy : 72.83, test_loss : 61.83916395902634, best_accuracy: 73.49
+
+Epoch: 21
+tr_accuracy : 75.16, tr_loss : 282.65569031238556
+test_accuracy : 72.05, test_loss : 65.28417754173279, best_accuracy: 73.49
+
+Epoch: 22
+tr_accuracy : 75.308, tr_loss : 281.5972613990307
+test_accuracy : 71.6, test_loss : 67.51025050878525, best_accuracy: 73.49
+
+Epoch: 23
+tr_accuracy : 75.336, tr_loss : 281.9488832950592
+test_accuracy : 72.67, test_loss : 63.13124567270279, best_accuracy: 73.49
+
+Epoch: 24
+tr_accuracy : 75.402, tr_loss : 281.0619663000107
+test_accuracy : 69.72, test_loss : 71.26735520362854, best_accuracy: 73.49
+
+Epoch: 25
+tr_accuracy : 75.656, tr_loss : 278.7537661790848
+Saving..
+test_accuracy : 73.93, test_loss : 59.40446621179581, best_accuracy: 73.93
+
+Epoch: 26
+tr_accuracy : 75.822, tr_loss : 275.2349752187729
+test_accuracy : 73.21, test_loss : 62.378217697143555, best_accuracy: 73.93
+
+Epoch: 27
+tr_accuracy : 75.95, tr_loss : 275.4867745041847
+test_accuracy : 73.52, test_loss : 61.46299892663956, best_accuracy: 73.93
+
+Epoch: 28
+tr_accuracy : 76.036, tr_loss : 273.7678492963314
+test_accuracy : 71.43, test_loss : 65.70490396022797, best_accuracy: 73.93
+
+Epoch: 29
+tr_accuracy : 76.21, tr_loss : 272.9868892133236
+Saving..
+test_accuracy : 76.64, test_loss : 54.629419922828674, best_accuracy: 76.64
+
+Epoch: 30
+tr_accuracy : 76.234, tr_loss : 271.0568510890007
+test_accuracy : 75.96, test_loss : 56.371980369091034, best_accuracy: 76.64
+
+Epoch: 31
+tr_accuracy : 75.922, tr_loss : 271.8714977502823
+test_accuracy : 76.09, test_loss : 56.73112517595291, best_accuracy: 76.64
+
+Epoch: 32
+tr_accuracy : 76.354, tr_loss : 268.7344141304493
+test_accuracy : 73.73, test_loss : 60.525889575481415, best_accuracy: 76.64
+
+Epoch: 33
+tr_accuracy : 76.722, tr_loss : 267.03532803058624
+test_accuracy : 76.01, test_loss : 56.51992094516754, best_accuracy: 76.64
+
+Epoch: 34
+tr_accuracy : 76.78, tr_loss : 266.66001173853874
+test_accuracy : 73.34, test_loss : 63.368762373924255, best_accuracy: 76.64
+
+Epoch: 35
+tr_accuracy : 76.67, tr_loss : 267.79494827985764
+test_accuracy : 75.87, test_loss : 56.21769595146179, best_accuracy: 76.64
+
+Epoch: 36
+tr_accuracy : 76.726, tr_loss : 266.45241180062294
+test_accuracy : 74.1, test_loss : 59.173450231552124, best_accuracy: 76.64
+
+Epoch: 37
+tr_accuracy : 76.698, tr_loss : 266.79833805561066
+test_accuracy : 74.66, test_loss : 60.31606262922287, best_accuracy: 76.64
+
+Epoch: 38
+tr_accuracy : 76.612, tr_loss : 265.74916914105415
+test_accuracy : 76.51, test_loss : 53.84775957465172, best_accuracy: 76.64
+
+Epoch: 39
+tr_accuracy : 76.962, tr_loss : 262.6205684542656
+test_accuracy : 74.27, test_loss : 58.85581648349762, best_accuracy: 76.64
+
+Epoch: 40
+tr_accuracy : 76.912, tr_loss : 265.52202492952347
+test_accuracy : 65.86, test_loss : 79.84067016839981, best_accuracy: 76.64
+
+Epoch: 41
+tr_accuracy : 76.82, tr_loss : 263.2285154759884
+test_accuracy : 72.54, test_loss : 63.69652643799782, best_accuracy: 76.64
+
+Epoch: 42
+tr_accuracy : 77.26, tr_loss : 261.18143823742867
+test_accuracy : 71.52, test_loss : 65.27212870121002, best_accuracy: 76.64
+
+Epoch: 43
+tr_accuracy : 77.256, tr_loss : 261.17637529969215
+test_accuracy : 76.57, test_loss : 54.092692494392395, best_accuracy: 76.64
+
+Epoch: 44
+tr_accuracy : 77.394, tr_loss : 258.4715067446232
+test_accuracy : 73.95, test_loss : 60.85454338788986, best_accuracy: 76.64
+
+Epoch: 45
+tr_accuracy : 77.49, tr_loss : 259.4371858537197
+test_accuracy : 74.96, test_loss : 57.756931602954865, best_accuracy: 76.64
+
+Epoch: 46
+tr_accuracy : 77.368, tr_loss : 259.3609434068203
+Saving..
+test_accuracy : 76.75, test_loss : 52.60106647014618, best_accuracy: 76.75
+
+Epoch: 47
+tr_accuracy : 77.16, tr_loss : 258.98010408878326
+test_accuracy : 75.63, test_loss : 55.61064898967743, best_accuracy: 76.75
+
+Epoch: 48
+tr_accuracy : 77.628, tr_loss : 257.29803916811943
+test_accuracy : 70.5, test_loss : 74.1651862859726, best_accuracy: 76.75
+
+Epoch: 49
+tr_accuracy : 77.47, tr_loss : 257.43282106518745
+Saving..
+test_accuracy : 77.04, test_loss : 53.27814504504204, best_accuracy: 77.04
+
+Epoch: 50
+tr_accuracy : 77.53, tr_loss : 256.36921387910843
+test_accuracy : 73.93, test_loss : 60.154867351055145, best_accuracy: 77.04
+
+Epoch: 51
+tr_accuracy : 77.708, tr_loss : 256.09489664435387
+test_accuracy : 76.4, test_loss : 54.73912140727043, best_accuracy: 77.04
+
+Epoch: 52
+tr_accuracy : 77.636, tr_loss : 256.0829292833805
+test_accuracy : 72.76, test_loss : 64.68826597929001, best_accuracy: 77.04
+
+Epoch: 53
+tr_accuracy : 77.948, tr_loss : 252.38187620043755
+test_accuracy : 74.12, test_loss : 62.4914864897728, best_accuracy: 77.04
+
+Epoch: 54
+tr_accuracy : 77.49, tr_loss : 256.51453843712807
+test_accuracy : 75.71, test_loss : 56.58564934134483, best_accuracy: 77.04
+
+Epoch: 55
+tr_accuracy : 78.066, tr_loss : 252.17906865477562
+test_accuracy : 75.49, test_loss : 57.35457772016525, best_accuracy: 77.04
+
+Epoch: 56
+tr_accuracy : 78.044, tr_loss : 254.37543246150017
+test_accuracy : 74.0, test_loss : 61.98777920007706, best_accuracy: 77.04
+
+Epoch: 57
+tr_accuracy : 77.962, tr_loss : 253.75938364863396
+test_accuracy : 75.51, test_loss : 56.92777693271637, best_accuracy: 77.04
+
+Epoch: 58
+tr_accuracy : 77.838, tr_loss : 253.5189543068409
+Saving..
+test_accuracy : 78.23, test_loss : 50.44456762075424, best_accuracy: 78.23
+
+Epoch: 59
+tr_accuracy : 78.128, tr_loss : 251.52710714936256
+test_accuracy : 76.4, test_loss : 54.89709857106209, best_accuracy: 78.23
+
+Epoch: 60
+tr_accuracy : 77.836, tr_loss : 251.37667793035507
+test_accuracy : 76.96, test_loss : 53.548751920461655, best_accuracy: 78.23
+
+Epoch: 61
+tr_accuracy : 78.094, tr_loss : 250.85923770070076
+test_accuracy : 76.63, test_loss : 54.02789467573166, best_accuracy: 78.23
+
+Epoch: 62
+tr_accuracy : 78.466, tr_loss : 246.56067922711372
+test_accuracy : 73.01, test_loss : 62.634038895368576, best_accuracy: 78.23
+
+Epoch: 63
+tr_accuracy : 78.15, tr_loss : 249.5510980784893
+test_accuracy : 74.55, test_loss : 58.844218730926514, best_accuracy: 78.23
+
+Epoch: 64
+tr_accuracy : 78.578, tr_loss : 245.89006903767586
+test_accuracy : 75.45, test_loss : 57.610592782497406, best_accuracy: 78.23
+
+Epoch: 65
+tr_accuracy : 78.216, tr_loss : 250.47323986887932
+test_accuracy : 73.76, test_loss : 60.62045907974243, best_accuracy: 78.23
+
+Epoch: 66
+tr_accuracy : 78.458, tr_loss : 248.38940557837486
+test_accuracy : 75.22, test_loss : 57.368684500455856, best_accuracy: 78.23
+
+Epoch: 67
+tr_accuracy : 78.766, tr_loss : 244.63912296295166
+test_accuracy : 75.21, test_loss : 60.19288772344589, best_accuracy: 78.23
+
+Epoch: 68
+tr_accuracy : 78.504, tr_loss : 248.05298709869385
+test_accuracy : 75.87, test_loss : 54.55343261361122, best_accuracy: 78.23
+
+Epoch: 69
+tr_accuracy : 78.686, tr_loss : 243.82237389683723
+test_accuracy : 76.86, test_loss : 53.47208333015442, best_accuracy: 78.23
+
+Epoch: 70
+tr_accuracy : 78.638, tr_loss : 245.71374133229256
+test_accuracy : 74.9, test_loss : 58.07671099901199, best_accuracy: 78.23
+
+Epoch: 71
+tr_accuracy : 78.566, tr_loss : 245.36277210712433
+test_accuracy : 76.54, test_loss : 54.90013188123703, best_accuracy: 78.23
+
+Epoch: 72
+tr_accuracy : 78.436, tr_loss : 246.10662481188774
+test_accuracy : 74.25, test_loss : 60.457998394966125, best_accuracy: 78.23
+
+Epoch: 73
+tr_accuracy : 78.804, tr_loss : 242.49783998727798
+test_accuracy : 77.68, test_loss : 52.467813193798065, best_accuracy: 78.23
+
+Epoch: 74
+tr_accuracy : 79.266, tr_loss : 240.03516188263893
+test_accuracy : 75.66, test_loss : 57.32922059297562, best_accuracy: 78.23
+
+Epoch: 75
+tr_accuracy : 78.73, tr_loss : 243.3681172132492
+test_accuracy : 72.89, test_loss : 66.14689335227013, best_accuracy: 78.23
+
+Epoch: 76
+tr_accuracy : 78.83, tr_loss : 243.16444078087807
+test_accuracy : 76.44, test_loss : 55.796317130327225, best_accuracy: 78.23
+
+Epoch: 77
+tr_accuracy : 78.92, tr_loss : 241.0730968117714
+test_accuracy : 74.14, test_loss : 61.78951948881149, best_accuracy: 78.23
+
+Epoch: 78
+tr_accuracy : 78.824, tr_loss : 241.7028039097786
+test_accuracy : 76.85, test_loss : 54.27268701791763, best_accuracy: 78.23
+
+Epoch: 79
+tr_accuracy : 78.988, tr_loss : 241.2430755198002
+test_accuracy : 73.5, test_loss : 62.38512808084488, best_accuracy: 78.23
+
+Epoch: 80
+tr_accuracy : 78.972, tr_loss : 241.73420038819313
+test_accuracy : 77.62, test_loss : 52.038096100091934, best_accuracy: 78.23
+
+Epoch: 81
+tr_accuracy : 79.064, tr_loss : 239.42532458901405
+test_accuracy : 77.13, test_loss : 52.60673335194588, best_accuracy: 78.23
+
+Epoch: 82
+tr_accuracy : 79.204, tr_loss : 238.22113925218582
+test_accuracy : 76.85, test_loss : 53.03483811020851, best_accuracy: 78.23
+
+Epoch: 83
+tr_accuracy : 79.166, tr_loss : 238.8928865492344
+test_accuracy : 77.6, test_loss : 52.41001272201538, best_accuracy: 78.23
+
+Epoch: 84
+tr_accuracy : 79.168, tr_loss : 238.17581820487976
+test_accuracy : 74.46, test_loss : 61.2613839507103, best_accuracy: 78.23
+
+Epoch: 85
+tr_accuracy : 79.182, tr_loss : 236.99398466944695
+test_accuracy : 76.93, test_loss : 54.40472191572189, best_accuracy: 78.23
+
+Epoch: 86
+tr_accuracy : 79.276, tr_loss : 237.99807515740395
+test_accuracy : 77.24, test_loss : 53.823019087314606, best_accuracy: 78.23
+
+Epoch: 87
+tr_accuracy : 79.186, tr_loss : 236.15449619293213
+test_accuracy : 77.85, test_loss : 50.749547123909, best_accuracy: 78.23
+
+Epoch: 88
+tr_accuracy : 79.652, tr_loss : 234.46665251255035
+test_accuracy : 76.79, test_loss : 54.739728420972824, best_accuracy: 78.23
+
+Epoch: 89
+tr_accuracy : 79.514, tr_loss : 236.2349750995636
+test_accuracy : 76.33, test_loss : 56.46970909833908, best_accuracy: 78.23
+
+Epoch: 90
+tr_accuracy : 79.502, tr_loss : 234.08148884773254
+test_accuracy : 73.89, test_loss : 61.87897300720215, best_accuracy: 78.23
+
+Epoch: 91
+tr_accuracy : 79.692, tr_loss : 232.61805859208107
+test_accuracy : 73.98, test_loss : 62.617515444755554, best_accuracy: 78.23
+
+Epoch: 92
+tr_accuracy : 79.414, tr_loss : 234.0831571817398
+test_accuracy : 74.5, test_loss : 61.53453782200813, best_accuracy: 78.23
+
+Epoch: 93
+tr_accuracy : 79.546, tr_loss : 231.4636740386486
+test_accuracy : 75.76, test_loss : 54.523476004600525, best_accuracy: 78.23
+
+Epoch: 94
+tr_accuracy : 79.862, tr_loss : 230.96306231617928
+test_accuracy : 76.92, test_loss : 53.4199196100235, best_accuracy: 78.23
+
+Epoch: 95
+tr_accuracy : 79.776, tr_loss : 231.6966045498848
+test_accuracy : 74.87, test_loss : 59.731832563877106, best_accuracy: 78.23
+
+Epoch: 96
+tr_accuracy : 79.648, tr_loss : 231.80692493915558
+test_accuracy : 74.2, test_loss : 60.078999519348145, best_accuracy: 78.23
+
+Epoch: 97
+tr_accuracy : 79.924, tr_loss : 229.0828057229519
+test_accuracy : 75.11, test_loss : 58.72774237394333, best_accuracy: 78.23
+
+Epoch: 98
+tr_accuracy : 80.352, tr_loss : 227.1785325706005
+test_accuracy : 76.49, test_loss : 56.79850512742996, best_accuracy: 78.23
+
+Epoch: 99
+tr_accuracy : 80.006, tr_loss : 227.16636416316032
+test_accuracy : 73.58, test_loss : 62.634842216968536, best_accuracy: 78.23
+
+Epoch: 100
+tr_accuracy : 79.978, tr_loss : 229.02572253346443
+test_accuracy : 73.45, test_loss : 60.886164009571075, best_accuracy: 78.23
+
+Epoch: 101
+tr_accuracy : 80.03, tr_loss : 228.46242782473564
+test_accuracy : 77.32, test_loss : 52.21716731786728, best_accuracy: 78.23
+
+Epoch: 102
+tr_accuracy : 80.442, tr_loss : 223.02938586473465
+test_accuracy : 72.55, test_loss : 67.7252905368805, best_accuracy: 78.23
+
+Epoch: 103
+tr_accuracy : 80.296, tr_loss : 226.6977474987507
+Saving..
+test_accuracy : 79.01, test_loss : 49.450102001428604, best_accuracy: 79.01
+
+Epoch: 104
+tr_accuracy : 80.268, tr_loss : 227.30256229639053
+test_accuracy : 79.0, test_loss : 50.08167424798012, best_accuracy: 79.01
+
+Epoch: 105
+tr_accuracy : 80.428, tr_loss : 225.05465614795685
+test_accuracy : 75.51, test_loss : 56.723666071891785, best_accuracy: 79.01
+
+Epoch: 106
+tr_accuracy : 80.504, tr_loss : 223.1435635983944
+test_accuracy : 77.51, test_loss : 52.99289184808731, best_accuracy: 79.01
+
+Epoch: 107
+tr_accuracy : 80.182, tr_loss : 225.07747980952263
+Saving..
+test_accuracy : 79.29, test_loss : 47.886370092630386, best_accuracy: 79.29
+
+Epoch: 108
+tr_accuracy : 80.424, tr_loss : 223.27823150157928
+Saving..
+test_accuracy : 79.87, test_loss : 47.01363185048103, best_accuracy: 79.87
+
+Epoch: 109
+tr_accuracy : 80.412, tr_loss : 222.107273042202
+test_accuracy : 78.55, test_loss : 51.112858057022095, best_accuracy: 79.87
+
+Epoch: 110
+tr_accuracy : 80.934, tr_loss : 219.00206038355827
+test_accuracy : 77.8, test_loss : 52.40808764100075, best_accuracy: 79.87
+
+Epoch: 111
+tr_accuracy : 80.82, tr_loss : 222.6442323923111
+test_accuracy : 73.76, test_loss : 61.25894570350647, best_accuracy: 79.87
+
+Epoch: 112
+tr_accuracy : 80.896, tr_loss : 219.1592210829258
+test_accuracy : 75.69, test_loss : 57.85659536719322, best_accuracy: 79.87
+
+Epoch: 113
+tr_accuracy : 80.758, tr_loss : 218.66326934099197
+test_accuracy : 78.38, test_loss : 49.95717164874077, best_accuracy: 79.87
+
+Epoch: 114
+tr_accuracy : 80.926, tr_loss : 217.84071120619774
+test_accuracy : 76.61, test_loss : 53.486459255218506, best_accuracy: 79.87
+
+Epoch: 115
+tr_accuracy : 81.142, tr_loss : 215.26871633529663
+test_accuracy : 76.98, test_loss : 54.61573779582977, best_accuracy: 79.87
+
+Epoch: 116
+tr_accuracy : 80.902, tr_loss : 217.40382942557335
+test_accuracy : 77.92, test_loss : 52.04815247654915, best_accuracy: 79.87
+
+Epoch: 117
+tr_accuracy : 81.186, tr_loss : 216.41022276878357
+test_accuracy : 78.96, test_loss : 49.98005026578903, best_accuracy: 79.87
+
+Epoch: 118
+tr_accuracy : 80.89, tr_loss : 217.44962358474731
+test_accuracy : 76.58, test_loss : 55.1780960559845, best_accuracy: 79.87
+
+Epoch: 119
+tr_accuracy : 81.346, tr_loss : 216.75531595945358
+test_accuracy : 79.6, test_loss : 47.20196759700775, best_accuracy: 79.87
+
+Epoch: 120
+tr_accuracy : 81.62, tr_loss : 210.67387667298317
+Saving..
+test_accuracy : 80.73, test_loss : 45.26779645681381, best_accuracy: 80.73
+
+Epoch: 121
+tr_accuracy : 81.472, tr_loss : 212.37242171168327
+test_accuracy : 79.86, test_loss : 47.35508617758751, best_accuracy: 80.73
+
+Epoch: 122
+tr_accuracy : 81.166, tr_loss : 213.79962903261185
+test_accuracy : 78.91, test_loss : 48.56042364239693, best_accuracy: 80.73
+
+Epoch: 123
+tr_accuracy : 81.282, tr_loss : 211.72930786013603
+test_accuracy : 79.93, test_loss : 47.38080343604088, best_accuracy: 80.73
+
+Epoch: 124
+tr_accuracy : 81.776, tr_loss : 209.25505009293556
+test_accuracy : 79.89, test_loss : 47.054505467414856, best_accuracy: 80.73
+
+Epoch: 125
+tr_accuracy : 81.7, tr_loss : 209.05717346072197
+test_accuracy : 79.12, test_loss : 49.30013567209244, best_accuracy: 80.73
+
+Epoch: 126
+tr_accuracy : 81.626, tr_loss : 210.14157265424728
+test_accuracy : 75.41, test_loss : 57.66307109594345, best_accuracy: 80.73
+
+Epoch: 127
+tr_accuracy : 82.098, tr_loss : 206.607047021389
+test_accuracy : 79.46, test_loss : 46.145249158144, best_accuracy: 80.73
+
+Epoch: 128
+tr_accuracy : 82.176, tr_loss : 206.06833028793335
+test_accuracy : 78.06, test_loss : 50.32517781853676, best_accuracy: 80.73
+
+Epoch: 129
+tr_accuracy : 81.768, tr_loss : 207.26206108927727
+test_accuracy : 79.34, test_loss : 49.02266484498978, best_accuracy: 80.73
+
+Epoch: 130
+tr_accuracy : 82.04, tr_loss : 205.50108444690704
+test_accuracy : 78.19, test_loss : 51.24476116895676, best_accuracy: 80.73
+
+Epoch: 131
+tr_accuracy : 81.98, tr_loss : 204.9731385409832
+test_accuracy : 80.44, test_loss : 44.72028397023678, best_accuracy: 80.73
+
+Epoch: 132
+tr_accuracy : 81.96, tr_loss : 206.0315105319023
+test_accuracy : 78.97, test_loss : 50.02563452720642, best_accuracy: 80.73
+
+Epoch: 133
+tr_accuracy : 82.178, tr_loss : 204.7666807770729
+test_accuracy : 78.94, test_loss : 50.741971492767334, best_accuracy: 80.73
+
+Epoch: 134
+tr_accuracy : 82.046, tr_loss : 204.495747089386
+test_accuracy : 77.38, test_loss : 51.63506120443344, best_accuracy: 80.73
+
+Epoch: 135
+tr_accuracy : 82.41, tr_loss : 201.27818843722343
+test_accuracy : 79.93, test_loss : 47.64992466568947, best_accuracy: 80.73
+
+Epoch: 136
+tr_accuracy : 82.208, tr_loss : 202.5442417860031
+test_accuracy : 78.85, test_loss : 49.21159967780113, best_accuracy: 80.73
+
+Epoch: 137
+tr_accuracy : 82.546, tr_loss : 198.26893222332
+test_accuracy : 80.02, test_loss : 46.49640193581581, best_accuracy: 80.73
+
+Epoch: 138
+tr_accuracy : 82.348, tr_loss : 201.56492894887924
+test_accuracy : 78.26, test_loss : 51.50017714500427, best_accuracy: 80.73
+
+Epoch: 139
+tr_accuracy : 82.542, tr_loss : 198.28994292020798
+test_accuracy : 77.24, test_loss : 53.76957353949547, best_accuracy: 80.73
+
+Epoch: 140
+tr_accuracy : 82.672, tr_loss : 197.5647457242012
+Saving..
+test_accuracy : 81.51, test_loss : 44.18846940994263, best_accuracy: 81.51
+
+Epoch: 141
+tr_accuracy : 82.95, tr_loss : 195.66511242091656
+test_accuracy : 79.89, test_loss : 48.3414848446846, best_accuracy: 81.51
+
+Epoch: 142
+tr_accuracy : 82.66, tr_loss : 197.9581180512905
+test_accuracy : 80.36, test_loss : 45.32220670580864, best_accuracy: 81.51
+
+Epoch: 143
+tr_accuracy : 82.91, tr_loss : 195.31707164645195
+test_accuracy : 80.07, test_loss : 46.76835060119629, best_accuracy: 81.51
+
+Epoch: 144
+tr_accuracy : 83.088, tr_loss : 195.20209297537804
+test_accuracy : 77.16, test_loss : 55.029169857501984, best_accuracy: 81.51
+
+Epoch: 145
+tr_accuracy : 82.99, tr_loss : 193.62388369441032
+test_accuracy : 80.81, test_loss : 45.45516347885132, best_accuracy: 81.51
+
+Epoch: 146
+tr_accuracy : 82.976, tr_loss : 193.1033212542534
+Saving..
+test_accuracy : 81.55, test_loss : 43.386089116334915, best_accuracy: 81.55
+
+Epoch: 147
+tr_accuracy : 83.552, tr_loss : 188.62687161564827
+test_accuracy : 79.77, test_loss : 46.727069556713104, best_accuracy: 81.55
+
+Epoch: 148
+tr_accuracy : 83.33, tr_loss : 190.54865880310535
+test_accuracy : 81.1, test_loss : 44.92784610390663, best_accuracy: 81.55
+
+Epoch: 149
+tr_accuracy : 83.43, tr_loss : 189.05408024787903
+test_accuracy : 79.68, test_loss : 47.5767118036747, best_accuracy: 81.55
+
+Epoch: 150
+tr_accuracy : 83.432, tr_loss : 189.14711174368858
+test_accuracy : 80.38, test_loss : 46.14812612533569, best_accuracy: 81.55
+
+Epoch: 151
+tr_accuracy : 83.292, tr_loss : 190.4303705394268
+test_accuracy : 80.07, test_loss : 47.1587533056736, best_accuracy: 81.55
+
+Epoch: 152
+tr_accuracy : 83.618, tr_loss : 186.50008431077003
+test_accuracy : 80.32, test_loss : 47.65175840258598, best_accuracy: 81.55
+
+Epoch: 153
+tr_accuracy : 83.498, tr_loss : 187.62825813889503
+test_accuracy : 81.04, test_loss : 44.22167593240738, best_accuracy: 81.55
+
+Epoch: 154
+tr_accuracy : 83.62, tr_loss : 187.58685076236725
+test_accuracy : 80.48, test_loss : 45.99204137921333, best_accuracy: 81.55
+
+Epoch: 155
+tr_accuracy : 83.418, tr_loss : 187.0871846973896
+test_accuracy : 78.71, test_loss : 50.0325993001461, best_accuracy: 81.55
+
+Epoch: 156
+tr_accuracy : 83.694, tr_loss : 185.82579363882542
+test_accuracy : 80.53, test_loss : 45.0393091738224, best_accuracy: 81.55
+
+Epoch: 157
+tr_accuracy : 84.134, tr_loss : 180.88763964176178
+Saving..
+test_accuracy : 81.87, test_loss : 43.50928312540054, best_accuracy: 81.87
+
+Epoch: 158
+tr_accuracy : 83.962, tr_loss : 180.32480284571648
+test_accuracy : 80.49, test_loss : 46.288489907979965, best_accuracy: 81.87
+
+Epoch: 159
+tr_accuracy : 84.172, tr_loss : 181.38493141531944
+test_accuracy : 81.76, test_loss : 43.44476202130318, best_accuracy: 81.87
+
+Epoch: 160
+tr_accuracy : 84.35, tr_loss : 180.76319354772568
+test_accuracy : 80.1, test_loss : 46.53188011050224, best_accuracy: 81.87
+
+Epoch: 161
+tr_accuracy : 84.332, tr_loss : 177.96401081979275
+Saving..
+test_accuracy : 82.11, test_loss : 42.11274138092995, best_accuracy: 82.11
+
+Epoch: 162
+tr_accuracy : 84.234, tr_loss : 178.73479434847832
+test_accuracy : 81.11, test_loss : 42.68977624177933, best_accuracy: 82.11
+
+Epoch: 163
+tr_accuracy : 84.724, tr_loss : 176.53386522829533
+test_accuracy : 78.7, test_loss : 49.85607039928436, best_accuracy: 82.11
+
+Epoch: 164
+tr_accuracy : 84.674, tr_loss : 175.34584379196167
+test_accuracy : 80.21, test_loss : 47.17046961188316, best_accuracy: 82.11
+
+Epoch: 165
+tr_accuracy : 84.748, tr_loss : 173.3102204799652
+test_accuracy : 80.3, test_loss : 48.09812915325165, best_accuracy: 82.11
+
+Epoch: 166
+tr_accuracy : 84.636, tr_loss : 174.35677805542946
+test_accuracy : 81.46, test_loss : 44.035949021577835, best_accuracy: 82.11
+
+Epoch: 167
+tr_accuracy : 84.81, tr_loss : 171.74912297725677
+test_accuracy : 80.78, test_loss : 45.28513476252556, best_accuracy: 82.11
+
+Epoch: 168
+tr_accuracy : 85.02, tr_loss : 170.15988467633724
+test_accuracy : 79.85, test_loss : 48.00112244486809, best_accuracy: 82.11
+
+Epoch: 169
+tr_accuracy : 85.122, tr_loss : 169.79910546541214
+test_accuracy : 81.56, test_loss : 43.46732780337334, best_accuracy: 82.11
+
+Epoch: 170
+tr_accuracy : 85.244, tr_loss : 167.5835263133049
+Saving..
+test_accuracy : 82.44, test_loss : 41.35143181681633, best_accuracy: 82.44
+
+Epoch: 171
+tr_accuracy : 85.168, tr_loss : 170.14250177145004
+test_accuracy : 79.91, test_loss : 48.23806330561638, best_accuracy: 82.44
+
+Epoch: 172
+tr_accuracy : 85.174, tr_loss : 166.37363179028034
+test_accuracy : 79.97, test_loss : 47.43557024002075, best_accuracy: 82.44
+
+Epoch: 173
+tr_accuracy : 85.422, tr_loss : 165.5706226825714
+test_accuracy : 81.21, test_loss : 44.377264857292175, best_accuracy: 82.44
+
+Epoch: 174
+tr_accuracy : 85.53, tr_loss : 163.5648871064186
+test_accuracy : 81.95, test_loss : 41.67149469256401, best_accuracy: 82.44
+
+Epoch: 175
+tr_accuracy : 85.762, tr_loss : 162.43804256618023
+test_accuracy : 82.2, test_loss : 43.26491056382656, best_accuracy: 82.44
+
+Epoch: 176
+tr_accuracy : 85.708, tr_loss : 163.06741219758987
+test_accuracy : 81.72, test_loss : 42.41243430972099, best_accuracy: 82.44
+
+Epoch: 177
+tr_accuracy : 85.796, tr_loss : 160.2578605413437
+test_accuracy : 81.05, test_loss : 44.48724466562271, best_accuracy: 82.44
+
+Epoch: 178
+tr_accuracy : 86.086, tr_loss : 159.21719366312027
+test_accuracy : 81.39, test_loss : 44.22327181696892, best_accuracy: 82.44
+
+Epoch: 179
+tr_accuracy : 86.214, tr_loss : 158.04153676331043
+test_accuracy : 81.12, test_loss : 45.54812641441822, best_accuracy: 82.44
+
+Epoch: 180
+tr_accuracy : 86.33, tr_loss : 156.5625885426998
+test_accuracy : 81.45, test_loss : 43.2363275885582, best_accuracy: 82.44
+
+Epoch: 181
+tr_accuracy : 86.35, tr_loss : 155.60284173488617
+Saving..
+test_accuracy : 83.29, test_loss : 40.05809831619263, best_accuracy: 83.29
+
+Epoch: 182
+tr_accuracy : 86.274, tr_loss : 157.0580678731203
+Saving..
+test_accuracy : 83.34, test_loss : 39.917045801877975, best_accuracy: 83.34
+
+Epoch: 183
+tr_accuracy : 86.542, tr_loss : 153.09526501595974
+test_accuracy : 80.98, test_loss : 46.694078743457794, best_accuracy: 83.34
+
+Epoch: 184
+tr_accuracy : 86.338, tr_loss : 154.47377167642117
+test_accuracy : 82.07, test_loss : 42.11631000041962, best_accuracy: 83.34
+
+Epoch: 185
+tr_accuracy : 86.778, tr_loss : 150.88854637742043
+test_accuracy : 82.05, test_loss : 42.934668242931366, best_accuracy: 83.34
+
+Epoch: 186
+tr_accuracy : 86.712, tr_loss : 151.2706883996725
+test_accuracy : 83.07, test_loss : 40.36363622546196, best_accuracy: 83.34
+
+Epoch: 187
+tr_accuracy : 87.054, tr_loss : 147.98369282484055
+Saving..
+test_accuracy : 84.09, test_loss : 37.00531902909279, best_accuracy: 84.09
+
+Epoch: 188
+tr_accuracy : 86.902, tr_loss : 147.7886811196804
+test_accuracy : 82.15, test_loss : 42.68368911743164, best_accuracy: 84.09
+
+Epoch: 189
+tr_accuracy : 87.14, tr_loss : 146.57288467884064
+test_accuracy : 80.86, test_loss : 44.98460987210274, best_accuracy: 84.09
+
+Epoch: 190
+tr_accuracy : 87.27, tr_loss : 144.7706916630268
+test_accuracy : 81.16, test_loss : 44.53737235069275, best_accuracy: 84.09
+
+Epoch: 191
+tr_accuracy : 87.3, tr_loss : 144.21853445470333
+test_accuracy : 81.57, test_loss : 44.87727275490761, best_accuracy: 84.09
+
+Epoch: 192
+tr_accuracy : 87.344, tr_loss : 141.92293229699135
+test_accuracy : 81.14, test_loss : 46.00220912694931, best_accuracy: 84.09
+
+Epoch: 193
+tr_accuracy : 87.406, tr_loss : 141.47269658744335
+test_accuracy : 82.39, test_loss : 42.40981662273407, best_accuracy: 84.09
+
+Epoch: 194
+tr_accuracy : 87.648, tr_loss : 139.05936981737614
+test_accuracy : 82.44, test_loss : 42.612572491168976, best_accuracy: 84.09
+
+Epoch: 195
+tr_accuracy : 87.672, tr_loss : 138.11311104893684
+test_accuracy : 82.95, test_loss : 41.1603884100914, best_accuracy: 84.09
+
+Epoch: 196
+tr_accuracy : 87.646, tr_loss : 138.10391254723072
+test_accuracy : 83.32, test_loss : 39.286889135837555, best_accuracy: 84.09
+
+Epoch: 197
+tr_accuracy : 87.848, tr_loss : 137.78631740808487
+test_accuracy : 82.6, test_loss : 41.536449640989304, best_accuracy: 84.09
+
+Epoch: 198
+tr_accuracy : 87.944, tr_loss : 135.5924628674984
+test_accuracy : 82.19, test_loss : 43.18878561258316, best_accuracy: 84.09
+
+Epoch: 199
+tr_accuracy : 88.246, tr_loss : 134.24317705631256
+test_accuracy : 83.45, test_loss : 39.95879065990448, best_accuracy: 84.09
+==============================================================================
+Running epilogue script on indigo54.
+
+Submit time  : 2021-09-09T22:35:26
+Start time   : 2021-09-09T22:35:27
+End time     : 2021-09-09T23:22:12
+Elapsed time : 00:46:45 (Timelimit=12:00:00)
+
+Job ID: 466443
+Cluster: i5
+User/Group: jz1n20/fp
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 10
+CPU Utilized: 02:14:07
+CPU Efficiency: 28.69% of 07:47:30 core-walltime
+Job Wall-clock time: 00:46:45
+Memory Utilized: 9.82 GB
+Memory Efficiency: 0.00% of 0.00 MB
+
